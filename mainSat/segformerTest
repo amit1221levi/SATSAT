@@ -1,0 +1,39 @@
+import data_set_utils as data_utils
+import numpy as np
+from segment_anything import sam_model_registry, SamAutomaticMaskGenerator, SamPredictor
+import sys
+import torch
+import cv2
+
+import torch
+
+print(f"CUDA available: {torch.cuda.is_available()}")
+
+import os
+import torch
+import sys
+
+# Ensure you can import from the parent directory
+sys.path.append("..")
+
+# Get current directory until the SAT directory
+cwd = os.getcwd()
+
+sam_checkpoint = os.path.join(cwd, "segment-anything", "sam_vit_h_4b8939.pth")
+
+model_type = "vit_h"
+
+# Set CUDA_VISIBLE_DEVICES to specify GPU 2
+os.environ["CUDA_VISIBLE_DEVICES"] = "2"
+
+# Ensure CUDA is available and set the device to cuda:0 (which should map to the real GPU 2)
+device = torch.device("cuda:2" if torch.cuda.is_available() else "cpu")
+
+# Print the current device being used
+print(f"Using device: {device}")
+
+# Load the model
+sam = sam_model_registry[model_type](checkpoint=sam_checkpoint)
+
+
+
