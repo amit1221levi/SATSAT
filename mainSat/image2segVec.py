@@ -358,32 +358,4 @@ def img2gridImage(img,original_img=True):
     
 
 
-"""
-    
-    ### Score function:
-
-We will run it only on 100 images becuse that should be enough to evaluate the algorithms, there is not havy meaning to the special ocassion due to the positional encoding  that will come later on.
-
-First lets set up definitions:
-- mask label: each mask related to a segemented sub-object in the image and group of sub-objects  are related to  some parent object in the image, the the mask label is the label of the parent object.
-- label_range: The range within the sequence of masks that start in the first mini image of the mask label and end in the last mini image of the mask label.
-- label_score: The number of the mini images in the label_range that contains  a different mask label, so higher label_score means that the masks are less likely to be sorted correctly.
-- score: The sum of label_score for all mask labels, so higher score means that the  sorting algorithm is less likely to be correct.
-
-The score function will be:
-- score = sum(label_score for all mask labels)
-
-### Evaluation:
-- The function algorithm_evaluation(algorithm, images_with_labels,masks) will evaluate the algorithm using the images_with_labels dataset, and return the score of the algorithm.
-    * for each image in the dataset, we will evaluate the algorithm using the image masks and the expected labels:
-        * for each labeled object in the image, we set the all the masks from segment everything that within the labeled object mask to have the same label.
-        * run the algorithm on the masks and get the score.
-    * return the average score of the algorithm on the dataset.
-
-
-Data set: https://www.cityscapes-dataset.com/dataset-overview/
-
-"""
-
-
 
